@@ -1,5 +1,9 @@
 "use client";
 
+import { TrashIcon, SquaresPlusIcon } from "@heroicons/react/24/outline";
+
+import { Button } from "@/components/ui/button";
+
 import {
   ColumnDef,
   flexRender,
@@ -33,6 +37,16 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
+      <div className="flex justify-end items-center w-full space-x-4 mb-4 pr-4">
+        <Button variant="secondary">
+          <SquaresPlusIcon className="h-5 w-5 mr-3" />
+          Adicionar
+        </Button>
+        <Button variant="destructive" className={table.getFilteredSelectedRowModel().rows.length > 0 ? "" : "hidden"}>
+          <TrashIcon className="h-5 w-5 mr-3" />
+          Excluir
+        </Button>
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -61,7 +75,10 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      className="[&:has(.table-edit)]:w-24 [&:has(.table-edit)]:text-center"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -83,8 +100,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
+      <div className="flex items-center justify-end space-x-2 py-3 pl-2">
+        <div className="flex-1 text-sm font-bold text-secondary/70">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -54,10 +54,19 @@ export const columns: ColumnDef<Payment>[] = [
     },
   },
   {
-    id: "exclude",
-
+    id: "edit",
     cell: ({ row }) => (
-      <Button variant="destructive">
+      <Button className="table-edit" variant="secondary">
+        <PencilSquareIcon className="h-5 w-5" />
+      </Button>
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    id: "exclude",
+    cell: ({ row }) => (
+      <Button className="table-edit" variant="destructive">
         <TrashIcon className="h-5 w-5" />
       </Button>
     ),

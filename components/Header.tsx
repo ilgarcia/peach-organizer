@@ -47,7 +47,7 @@ function Header() {
         </MenubarMenu>
         <MenubarMenu>
           <Button variant="ghost" asChild>
-            <Link href="/#">
+            <Link href="/financeiro">
               <BanknotesIcon className="h-7 w-7" />
             </Link>
           </Button>
